@@ -1,9 +1,10 @@
+import Hero from '@/components/Frontend/hero'
 import React from 'react'
 
-export default function Page() {
+export default function Home() {
   return (
-    <div>
-      <h2>this is home page</h2>
-    </div>
+    <section className=''>
+      <Hero/>
+    </section>
   )
 }
