@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import Search from './Search'
+import React from "react";
+import Search from './Search';
 import Transitiontext from "./Transitiontext";
 import { Pill } from "lucide-react";
+import Image from 'next/image';
 
 const Hero = () => {
-  const TEXTS = ['Message', 'Dental', 'Cosmetic', 'Speech Therapist', 'Occupational Therapist', 'Acupucturist'];
+  const TEXTS = ['Message', 'Dental', 'Cosmetic', 'Speech Therapist', 'Occupational Therapist', 'Acupuncturist'];
   return (
-      <div className="bg-blue-950">
-        <div className="relative pb-[110px] pt-[50px] dark:bg-dark lg:pt-[50px] max-w-6xl mx-auto">
+    <div className="bg-blue-950">
+      <div className="relative pb-[110px] pt-[50px] dark:bg-dark lg:pt-[50px] max-w-6xl mx-auto">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 lg:w-6/12">
               <div className="hero-content">
-               <h1 className="mb-5 text-4xl flex flex-wrap items-center gap-3font-bold !leading-[1.208] text-gray-00 dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
-                <span>Book Your </span><Transitiontext className="text-blue-500" TEXTS={TEXTS}/>
-                
-                <br />
-                <span>Session Now</span>
+                <h1 className="mb-5 text-4xl flex flex-wrap items-center gap-3 font-bold !leading-[1.208] text-gray-00 dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
+                  <span>Book Your </span><Transitiontext className="text-blue-500" TEXTS={TEXTS}/>
+                  <br />
+                  <span>Session Now</span>
                 </h1>
                 <p className="mb-8 max-w-[480px] text-base text-gray-100 dark:-6">
-                Health shouldn't be a puzzle, we are cutting 
-                through the B.C to bring you simple affordable, 
-                and transparent healthcare
+                  Health shouldn&apos;t be a puzzle, we are cutting 
+                  through the B.C to bring you simple, affordable, 
+                  and transparent healthcare
                 </p>
                 {/* search bar*/}
                 <Search/>
@@ -41,7 +41,7 @@ const Hero = () => {
                       className="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-gray-50 hover:text-blue-500 dark:text-white"
                     >
                       <span className="mr-2">
-                      <Pill className="flex-shrink-0 w-5 h-5 text-blue-500"/>
+                        <Pill className="flex-shrink-0 w-5 h-5 text-blue-500"/>
                       </span>
                       Need a Refill
                     </a>
@@ -63,9 +63,11 @@ const Hero = () => {
             <div className="w-full px-4 lg:w-5/12">
               <div className="lg:ml-auto lg:text-right">
                 <div className="relative z-10 inline-block pt-11 lg:pt-0">
-                  <img
+                  <Image
                     src="https://cdn.tailgrids.com/1.0/assets/images/hero/hero-image-01.png"
                     alt="hero"
+                    width={800}
+                    height={600}
                     className="max-w-full lg:ml-auto"
                   />
                   <span className="absolute -bottom-8 -left-8 z-[-1]">
@@ -109,7 +111,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 
@@ -119,10 +121,8 @@ const SingleImage = ({ href, imgSrc }: {href:string, imgSrc:string}) => {
   return (
     <>
       <a href={href} className="flex w-full items-center justify-center">
-        <img src={imgSrc} alt="brand image" className="h-10 w-full" />
+        <Image src={imgSrc} alt="brand image" width={500} height={500} className="h-10 w-full" />
       </a>
     </>
   );
 };
-
-

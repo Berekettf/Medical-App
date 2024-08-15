@@ -3,7 +3,7 @@
 import React from 'react'
 import TextTransition, { presets } from 'react-text-transition';
 
-export default function transitiontext({TEXTS,className}:{TEXTS:string[], className?:string}) {
+export default function Transitiontext({TEXTS,className}:{TEXTS:string[], className?:string}) {
     const [index, setIndex] = React.useState(0);
 
     React.useEffect(() => {
