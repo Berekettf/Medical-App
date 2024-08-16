@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      domains: ['cdn.tailgrids.com'],
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'cdn.tailgrids.com',
+          port: '',
+          pathname: '/**',
+        },
+      ],
     },
   };
   

@@ -7,7 +7,7 @@ import Image from 'next/image';
 const Hero = () => {
   const TEXTS = ['Message', 'Dental', 'Cosmetic', 'Speech Therapist', 'Occupational Therapist', 'Acupuncturist'];
   return (
-    <div className="bg-blue-950">
+    <div className="bg-blue-950 mt-[100px] z-50">
       <div className="relative pb-[110px] pt-[50px] dark:bg-dark lg:pt-[50px] max-w-6xl mx-auto">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
