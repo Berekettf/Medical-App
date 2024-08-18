@@ -1,30 +1,38 @@
 import React from "react";
-import Search from './Search';
+import Search from "./Search";
 import Transitiontext from "./Transitiontext";
 import { Pill } from "lucide-react";
-import Image from 'next/image';
+import Image from "next/image";
 
 const Hero = () => {
-  const TEXTS = ['Message', 'Dental', 'Cosmetic', 'Speech Therapist', 'Occupational Therapist', 'Acupuncturist'];
+  const TEXTS = [
+    "Message",
+    "Dental",
+    "Cosmetic",
+    "Speech Therapist",
+    "Occupational Therapist",
+    "Acupuncturist",
+  ];
   return (
-    <div className="bg-blue-950 mt-[100px] z-50">
+    <div className="bg-blue-950 mt-[160px]">
       <div className="relative pb-[110px] pt-[50px] dark:bg-dark lg:pt-[50px] max-w-6xl mx-auto">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 lg:w-6/12">
               <div className="hero-content">
                 <h1 className="mb-5 text-4xl flex flex-wrap items-center gap-3 font-bold !leading-[1.208] text-gray-00 dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
-                  <span>Book Your </span><Transitiontext className="text-blue-500" TEXTS={TEXTS}/>
+                  <span>Book Your </span>
+                  <Transitiontext className="text-blue-500" TEXTS={TEXTS} />
                   <br />
                   <span>Session Now</span>
                 </h1>
                 <p className="mb-8 max-w-[480px] text-base text-gray-100 dark:-6">
-                  Health shouldn&apos;t be a puzzle, we are cutting 
-                  through the B.C to bring you simple, affordable, 
-                  and transparent healthcare
+                  Health shouldn&apos;t be a puzzle, we are cutting through the
+                  B.C to bring you simple, affordable, and transparent
+                  healthcare
                 </p>
                 {/* search bar*/}
-                <Search/>
+                <Search />
                 {/* STA BTNS*/}
                 <ul className="flex flex-wrap items-center mt-6">
                   <li>
@@ -41,7 +49,7 @@ const Hero = () => {
                       className="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-gray-50 hover:text-blue-500 dark:text-white"
                     >
                       <span className="mr-2">
-                        <Pill className="flex-shrink-0 w-5 h-5 text-blue-500"/>
+                        <Pill className="flex-shrink-0 w-5 h-5 text-blue-500" />
                       </span>
                       Need a Refill
                     </a>
@@ -50,11 +58,15 @@ const Hero = () => {
                 <div className="py-4 pt-8 flex gap-4">
                   <div className="flex flex-col items-center justify-center">
                     <span className="font-bold text-gray-50">600</span>
-                    <span className="text-sm text-gray-300">Active Specialist</span>
+                    <span className="text-sm text-gray-300">
+                      Active Specialist
+                    </span>
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     <span className="font-bold text-gray-50">1800</span>
-                    <span className="text-sm text-gray-400">Active Patients</span>
+                    <span className="text-sm text-gray-400">
+                      Active Patients
+                    </span>
                   </div>
                 </div>
               </div>
@@ -117,11 +129,17 @@ const Hero = () => {
 
 export default Hero;
 
-const SingleImage = ({ href, imgSrc }: {href:string, imgSrc:string}) => {
+const SingleImage = ({ href, imgSrc }: { href: string; imgSrc: string }) => {
   return (
     <>
       <a href={href} className="flex w-full items-center justify-center">
-        <Image src={imgSrc} alt="brand image" width={500} height={500} className="h-10 w-full" />
+        <Image
+          src={imgSrc}
+          alt="brand image"
+          width={500}
+          height={500}
+          className="h-10 w-full"
+        />
       </a>
     </>
   );

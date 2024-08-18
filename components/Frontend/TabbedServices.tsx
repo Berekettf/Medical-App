@@ -17,7 +17,7 @@ const TabbedService = () => {
             </div>
           </div>
         </div>
-        <div className="mx-auto max-w6x1">
+        <div className="mx-auto max-w-6x1">
         <TabbedItems/>
         </div>
       </div>
