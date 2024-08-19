@@ -2,6 +2,7 @@
 import { Button } from "flowbite-react";
 import { Plus } from "lucide-react";
 import React, { useState } from "react";
+import Availability from "./Availability";
 
 export default function DoctorDetails() {
   const [isActive, setIsActive] = useState("availability");
@@ -31,7 +32,9 @@ export default function DoctorDetails() {
       </div>
       <div className="">
         {isActive === "availability" ? (
-          <div>Availability Details Component</div>
+          <div>
+            <Availability />
+          </div>
         ) : (
           <div>Service Details Component</div>
         )}
