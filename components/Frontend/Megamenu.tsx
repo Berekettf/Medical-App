@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
+import * as React from "react";
+import Link from "next/link";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,7 +12,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
+import { usePathname } from "next/navigation";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -50,33 +51,33 @@ const components: { title: string; href: string; description: string }[] = [
     description:
       "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
   },
-]
+];
 
-const megaMenu= [
+const megaMenu = [
   {
     title: "Top Booked",
     services: [
       {
         title: "In-person doctor visit",
         slug: "in-person-doctor-visit",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Telehealth appointment",
         slug: "telehealth",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Online consultation",
         slug: "online-consultation",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Home visit service",
         slug: "home-visit",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
-    ]
+    ],
   },
   {
     title: "Doctors",
@@ -84,105 +85,104 @@ const megaMenu= [
       {
         title: "In-person doctor visit",
         slug: "in-person-doctor-visit",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Telehealth appointment",
         slug: "telehealth",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Online consultation",
         slug: "online-consultation",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Home visit service",
         slug: "home-visit",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
     ],
   },
   {
     title: "Specialist",
-    services:[
+    services: [
       {
         title: "In-person doctor visit",
         slug: "in-person-doctor-visit",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Telehealth appointment",
         slug: "telehealth",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Online consultation",
         slug: "online-consultation",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Home visit service",
         slug: "home-visit",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
     ],
   },
   {
     title: "Symptoms",
-    services:[
+    services: [
       {
         title: "In-person doctor visit",
         slug: "in-person-doctor-visit",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Telehealth appointment",
         slug: "telehealth",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Online consultation",
         slug: "online-consultation",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
       {
         title: "Home visit service",
         slug: "home-visit",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
     ],
   },
-]
-
+];
 
 export default function Megamenu() {
   return (
     <NavigationMenu className="bg-white">
       <NavigationMenuList className="space-x-4">
-        {megaMenu.map((item,i)=>{
-          return(
-          <NavigationMenuItem key={i}>
-          <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {item.services.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={'/sevices${component.slug}'}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-          )
+        {megaMenu.map((item, i) => {
+          return (
+            <NavigationMenuItem key={i}>
+              <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  {item.services.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={"/sevices${component.slug}"}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          );
         })}
       </NavigationMenuList>
     </NavigationMenu>
-  )
+  );
 }
 
 const ListItem = React.forwardRef<
@@ -207,6 +207,6 @@ const ListItem = React.forwardRef<
         </a>
       </NavigationMenuLink>
     </li>
-  )
-})
-ListItem.displayName = "ListItem"
+  );
+});
+ListItem.displayName = "ListItem";
