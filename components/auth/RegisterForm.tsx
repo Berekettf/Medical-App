@@ -3,8 +3,11 @@ import { type RegisterInputForm } from "@/types/types";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import TextInput from "../formInput/TextInput";
+import SubmitButton from "../formInput/SubmitButton";
+import { useState } from "react";
 
 export default function RegisterForm() {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -62,12 +65,11 @@ export default function RegisterForm() {
           />
 
           <div>
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Sign Up
-            </button>
+            <SubmitButton
+              title="Create A New Account"
+              isLoading={isLoading}
+              LoadingTitle="Creating Please Wait..."
+            />
           </div>
         </form>
 
