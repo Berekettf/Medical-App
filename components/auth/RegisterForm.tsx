@@ -1,22 +1,41 @@
 "use client";
-import { type RegisterInputForm } from "@/types/types";
+import { type RegisterInputProps } from "@/types/types";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import TextInput from "../formInput/TextInput";
 import SubmitButton from "../formInput/SubmitButton";
 import { useState } from "react";
+import { createUser } from "@/actions/users";
+import { UserRole } from "@prisma/client";
+import toast from "react-hot-toast";
 
-export default function RegisterForm() {
+export default function RegisterForm({ role = "USER" }: { role?: UserRole }) {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<RegisterInputForm>();
+  } = useForm<RegisterInputProps>();
 
-  async function onSubmit(data: RegisterInputForm) {
-    console.log(data);
+  async function onSubmit(data: RegisterInputProps) {
+    setIsLoading(true);
+    data.role = role;
+    //console.log(data);
+    try {
+      const user = await createUser(data);
+      if (user && user.status === 200) {
+        console.log("user created secesssfully");
+        reset();
+        setIsLoading(false);
+        toast.success("user created succesfully");
+        console.log(user.data);
+      } else {
+        console.log(user.error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -33,18 +52,11 @@ export default function RegisterForm() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <TextInput
-            label="First Name"
+            label="Full Name"
             register={register}
-            name="firstName"
-            errors={errors}
-          />
-
-          <TextInput
-            label="Last Name"
-            register={register}
-            name="lastName"
+            name="fullName"
             errors={errors}
           />
 
@@ -54,6 +66,13 @@ export default function RegisterForm() {
             name="email"
             errors={errors}
             type="email"
+          />
+          <TextInput
+            label="Phone Number"
+            register={register}
+            name="phone"
+            errors={errors}
+            type="tel"
           />
 
           <TextInput

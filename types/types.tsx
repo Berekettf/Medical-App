@@ -1,8 +1,14 @@
-export type ServiceProps = { title: String; image: String; slug: String };
+import { UserRole } from "@prisma/client";
 
-export type RegisterInputForm = {
-  firstname: String;
-  lastname: String;
-  email: String;
-  password: String;
+export type RegisterInputProps = {
+  fullName: string; // Changed from `String` to `string`
+  email: string; // Changed from `String` to `string`
+  password: string; // Changed from `String` to `string`
+  phone: string;
+  role: UserRole;
+};
+
+export type LoginInputProps = {
+  email: string; // Changed from `String` to `string`
+  password: string; // Changed from `String` to `string`
 };
