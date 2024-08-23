@@ -1,5 +1,5 @@
 "use client";
-import { LoginInputForm } from "@/types/types";
+import { LoginInputProps } from "@/types/types";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import TextInput from "../formInput/TextInput";
@@ -13,9 +13,9 @@ export default function LoginForm() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<LoginInputForm>();
+  } = useForm<LoginInputProps>();
 
-  async function onSubmit(data: LoginInputForm) {
+  async function onSubmit(data: LoginInputProps) {
     console.log(data);
   }
 
