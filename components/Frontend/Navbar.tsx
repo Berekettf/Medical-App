@@ -96,13 +96,13 @@ export default function Navbar() {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-800">
-            Features
+            Doctors
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-800">
-            Marketplace
+            Patient
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-800">
-            Company
+            Symptom
           </a>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">

@@ -6,41 +6,45 @@ import bcrypt from "bcrypt";
 import { Resend } from "resend";
 import EmailTemplate from "@/components/emails/EmailTemplate";
 
+// Function to get a user by their ID
+export async function getUserById(id: string) {
+  if (id) {
+    try {
+      const user = await prismaClient.user.findUnique({
+        where: {
+          id,
+        },
+      });
+      return user;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  } else {
+    return "User not found";
+  }
+}
+
+// Function to create a new user
 export async function createUser(formData: RegisterInputProps) {
   const { fullName, email, role, phone, password } = formData;
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  const resend = new Resend("re_VYkNVb9Y_LK4ZWk9KcfZ9WAnbb19B7xqp");
+
+  // Hash the password
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  // Generate Token
+  const generateToken = () => {
+    const min = 100000; // Minimum 6-digit number
+    const max = 999999; // Maximum 6-digit number
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+  const userToken = generateToken();
 
   try {
-    // Check if user already exists
-    const existingUser = await prismaClient.user.findUnique({
-      where: {
-        email: email,
-      },
-    });
-
-    if (existingUser) {
-      return {
-        data: null,
-        error: `User with this email (${email}) already exists in the Database`,
-        status: 409,
-      };
-    }
-
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Generate Token
-    const generateToken = () => {
-      const min = 100000; // Minimum 6-figure number
-      const max = 999999; // Maximum 6-figure number
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
-    const userToken = generateToken();
-
-    // Create the new user in the database
     const newUser = await prismaClient.user.create({
       data: {
-        name: fullName, 
+        name: fullName,
         email,
         phone,
         password: hashedPassword,
@@ -55,13 +59,15 @@ export async function createUser(formData: RegisterInputProps) {
     const firstName = newUser.name.split(" ")[0];
     const linkText = "Verify your Account ";
     const message =
-      "Thank you for registering with Gecko. To complete your registration and verify your email address, please enter the following 6-digit verification code on our website :";
+      "Thank you for registering with Gecko. To complete your registration and verify your email address, please enter the following 6-digit verification code on our website:";
+
     const sendMail = await resend.emails.send({
-      from: "Medical App <bereketwubalem12@gmail.com>",
+      from: "beka app <onboarding@resend.dev>",
       to: email,
-      subject: "Verify Your Email Address",
+      subject: "Hello World",
       react: EmailTemplate({ firstName, token, linkText, message }),
     });
+
     console.log(token);
     console.log(sendMail);
     console.log(newUser);
@@ -72,7 +78,6 @@ export async function createUser(formData: RegisterInputProps) {
       error: null,
       status: 200,
     };
-
   } catch (error) {
     console.error(error);
     return {
