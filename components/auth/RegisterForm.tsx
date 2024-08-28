@@ -8,6 +8,7 @@ import { useState } from "react";
 import { createUser } from "@/actions/users";
 import { UserRole } from "@prisma/client";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function RegisterForm({ role = "USER" }: { role?: UserRole }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +42,7 @@ export default function RegisterForm({ role = "USER" }: { role?: UserRole }) {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 border border-slate-50">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
+        <Image
           alt="My Health"
           src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
           className="mx-auto h-10 w-auto"
