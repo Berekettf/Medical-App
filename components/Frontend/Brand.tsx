@@ -1,5 +1,5 @@
 import React from "react";
-import Image from 'next/image';
+import Image from "next/image";
 
 const brandsData = [
   {
@@ -60,18 +60,31 @@ export default function Brands() {
   );
 }
 
-const SingleImage = ({ link, imageSrc, lightImageSrc, altText }: SingleImageProps) => {
+const SingleImage = ({
+  link,
+  imageSrc,
+  lightImageSrc,
+  altText,
+}: SingleImageProps) => {
   return (
     <a
       href={link}
       className="mx-4 flex w-[150px] items-center justify-center py-5 2xl:w-[180px]"
     >
-      <div className="h-10 w-full dark:hidden">
-        <Image src={imageSrc} alt={altText} layout="fill" objectFit="contain" />
-      </div>
-      <div className="hidden h-10 w-full dark:block">
-        <Image src={lightImageSrc} alt={altText} layout="fill" objectFit="contain" />
-      </div>
+      <Image
+        src={imageSrc}
+        alt={altText}
+        width={150} // Set appropriate width
+        height={40} // Set appropriate height
+        className="h-10 w-full dark:hidden"
+      />
+      <Image
+        src={lightImageSrc}
+        alt={altText}
+        width={150} // Set appropriate width
+        height={40} // Set appropriate height
+        className="hidden h-10 w-full dark:block"
+      />
     </a>
   );
 };
