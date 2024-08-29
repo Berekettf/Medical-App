@@ -147,23 +147,21 @@ export default function page() {
               })}
             </div>*/}
             <div className="grid grid-cols-2 gap-4 py-6">
-              {cards.map((card, c) => {
-                return (
-                  <div className="bg-blue-900 p-4 rounded-lg shadow-2xl">
-                    <h3 className="text-white text-2xl font-semibold">
-                      {card.title}
-                    </h3>
-                    <p className="text-gray-400 text-xs py-3">
-                      {card.description}
-                    </p>
-                    <CustomButton
-                      title={card.linkTitle}
-                      href={card.link}
-                      className="bg-blue-600 hover:bg-blue-800"
-                    />
-                  </div>
-                );
-              })}
+              {cards.map((card, c) => (
+                <div key={c} className="bg-blue-900 p-4 rounded-lg shadow-2xl">
+                  <h3 className="text-white text-2xl font-semibold">
+                    {card.title}
+                  </h3>
+                  <p className="text-gray-400 text-xs py-3">
+                    {card.description}
+                  </p>
+                  <CustomButton
+                    title={card.linkTitle}
+                    href={card.link}
+                    className="bg-blue-600 hover:bg-blue-800"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
