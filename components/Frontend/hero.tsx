@@ -14,13 +14,13 @@ const Hero = () => {
     "Acupuncturist",
   ];
   return (
-    <div className="bg-blue-950 mt-[160px]">
+    <div className="bg-blue-950 ">
       <div className="relative pb-[110px] pt-[50px] dark:bg-dark lg:pt-[50px] max-w-6xl mx-auto">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 lg:w-6/12">
               <div className="hero-content">
-                <h1 className="mb-5 text-4xl flex flex-wrap items-center gap-3 font-bold !leading-[1.208] text-gray-00 dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
+                <h1 className="mb-5 text-4xl flex flex-wrap items-center gap-3 font-bold !leading-[1.208] text-gray-50 dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
                   <span>Book Your </span>
                   <Transitiontext className="text-blue-500" TEXTS={TEXTS} />
                   <br />
