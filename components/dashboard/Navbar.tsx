@@ -37,6 +37,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { AlignJustify, Bell, Mail, Search } from "lucide-react";
+import ModeToggle from "../ModeToggle";
 
 export default function Navbar() {
   const router = useRouter();
@@ -130,6 +131,7 @@ export default function Navbar() {
           </div>
         </form>
       </div>
+      <ModeToggle />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="secondary" size="icon" className="rounded-full">
