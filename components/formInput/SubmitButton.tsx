@@ -1,5 +1,6 @@
-import { Loader } from "lucide-react";
+import { Loader, Loader2 } from "lucide-react";
 import React from "react";
+import { Button } from "../ui/button";
 
 type submitButtonProps = {
   title: string;
@@ -15,27 +16,17 @@ export default function SubmitButton({
   LoadingTitle,
 }: submitButtonProps) {
   return (
-    <div>
+    <>
       {isLoading ? (
-        <button
-          type={buttonType}
-          disabled
-          className="flex w-full justify-center rounded-md bg-indigo-600 
-          px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm 
-          hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 
-          focus-visible:outline-offset-2 focus-visible:outline-indigo-600 items-center"
-        >
-          <Loader className="w-4 h-4 flex-shrink-0 mr-2 animate-spin" />
+        <Button disabled>
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           {LoadingTitle}
-        </button>
+        </Button>
       ) : (
-        <button
-          type={buttonType}
-          className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
+        <Button type={buttonType} className="w-full">
           {title}
-        </button>
+        </Button>
       )}
-    </div>
+    </>
   );
 }

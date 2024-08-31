@@ -3,6 +3,7 @@ import Search from "./Search";
 import Transitiontext from "./Transitiontext";
 import { Pill } from "lucide-react";
 import Image from "next/image";
+import { CommandMenu } from "../command-menu";
 
 const Hero = () => {
   const TEXTS = [
@@ -14,16 +15,15 @@ const Hero = () => {
     "Acupuncturist",
   ];
   return (
-    <div className="bg-blue-950 ">
+    <div className="bg-blue-950 dark:bg-slate-900 ">
       <div className="relative pb-[110px] pt-[50px] dark:bg-dark lg:pt-[50px] max-w-6xl mx-auto">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 lg:w-6/12">
               <div className="hero-content">
-                <h1 className="mb-5 text-4xl flex flex-wrap items-center gap-3 font-bold !leading-[1.208] text-gray-50 dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
+                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
                   <span>Book Your </span>
                   <Transitiontext className="text-blue-500" TEXTS={TEXTS} />
-                  <br />
                   <span>Session Now</span>
                 </h1>
                 <p className="mb-8 max-w-[480px] text-base text-gray-100 dark:-6">
@@ -32,7 +32,10 @@ const Hero = () => {
                   healthcare
                 </p>
                 {/* search bar*/}
-                <Search />
+                {/*<Search />*/}
+                <div className="w-full flex-1 md:flex-none">
+                  <CommandMenu />
+                </div>
                 {/* STA BTNS*/}
                 <ul className="flex flex-wrap items-center mt-6">
                   <li>

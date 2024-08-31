@@ -41,9 +41,9 @@ export default function Setting() {
       <Tabs defaultValue="general">
         <div className="flex items-center">
           <TabsList>
-            {tabs.map((tab) => {
+            {tabs.map((tab, i) => {
               return (
-                <TabsTrigger key={tab.value} value={tab.value}>
+                <TabsTrigger key={i} value={tab.value}>
                   {tab.label}
                 </TabsTrigger>
               );
@@ -58,8 +58,12 @@ export default function Setting() {
             </Button>
           </div>
         </div>
-        {tabs.map((tab) => {
-          return <TabsContent value={tab.value}>{tab.Component}</TabsContent>;
+        {tabs.map((tab, i) => {
+          return (
+            <TabsContent key={i} value={tab.value}>
+              {tab.Component}
+            </TabsContent>
+          );
         })}
       </Tabs>
     </main>
