@@ -12,3 +12,9 @@ export type LoginInputProps = {
   email: string; // Changed from `String` to `string`
   password: string; // Changed from `String` to `string`
 };
+
+export type ServicesProps = {
+  title: string;
+  image: string;
+  slug: string;
+};

@@ -14,7 +14,7 @@ export default function Home() {
       <DoctorsList
         title="In-person doctor visit"
         isinPerson={true}
-        className="bg-white py-8 lg:py-24"
+        className="bg-blue-50 dark:bg-slate-800 py-8 lg:py-24"
       />
     </section>
   );

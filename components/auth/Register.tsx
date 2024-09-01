@@ -10,9 +10,11 @@ import { UserRole } from "@prisma/client";
 import toast from "react-hot-toast";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function RegisterWithBg({ role = "USER" }: { role?: UserRole }) {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -31,6 +33,7 @@ export default function RegisterWithBg({ role = "USER" }: { role?: UserRole }) {
         reset();
         setIsLoading(false);
         toast.success("user created succesfully");
+        router.push(`/verify-account/${user.data?.id}`);
         console.log(user.data);
       } else {
         console.log(user.error);
@@ -87,7 +90,7 @@ export default function RegisterWithBg({ role = "USER" }: { role?: UserRole }) {
             <SubmitButton
               title="Sign Up"
               isLoading={isLoading}
-              LoadingTitle="Logging you in, please wait..."
+              LoadingTitle="Creating account, please wait..."
             />
             <Button variant="outline" className="w-full">
               Signup with Google

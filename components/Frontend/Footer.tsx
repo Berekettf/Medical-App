@@ -98,25 +98,29 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8">
+    <footer className="text-gray-500 bg-white px-4 dark:bg-slate-950 py-5 max-w-screen-xl mx-auto md:px-8">
       <div className="gap-6 justify-between md:flex">
         <div className="flex-1">
           <div className="max-w-xs">
-            <h2>Medical App</h2>
-            <p className="leading-relaxed mt-2 text-[15px]">
-              "Bridging the healthcare gap, one appointment at a time."
+            <h2 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl my-4 dark:text-gray-50">
+              Medical App
+            </h2>
+            <p className="leading-relaxed mt-2 text-[15px] dark:text-gray-400">
+              Bridging the healthcare gap, one appointment at a time.
             </p>
           </div>
         </div>
         <div className="flex-1 mt-10 space-y-6 items-center justify-between sm:flex md:space-y-0 md:mt-0">
           {footerNavs.map((item, idx) => (
             <ul className="space-y-4" key={idx}>
-              <h4 className="text-gray-800 font-medium">{item.label}</h4>
+              <h4 className="text-gray-800 font-medium dark:text-gray-200">
+                {item.label}
+              </h4>
               {item.items.map((el, idx) => (
                 <li key={idx}>
                   <a
                     href={el.href}
-                    className="hover:underline hover:text-indigo-600"
+                    className="hover:underline hover:text-indigo-600 dark:text-gray-400"
                   >
                     {el.name}
                   </a>

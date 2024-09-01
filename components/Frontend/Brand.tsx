@@ -43,8 +43,10 @@ export type SingleImageProps = {
 
 export default function Brands() {
   return (
-    <section className="bg-slate-100 py-10 lg:py-[60px] dark:bg-dark">
-      <h2 className="text-center pb-6">Trusted By</h2>
+    <section className="bg-slate-100 text-slate-800 py-10 lg:py-[60px]">
+      <h2 className="text-center pb-6 scroll-m-20 text-2xl font-semibold tracking-tight">
+        Trusted By
+      </h2>
       <div className="container mx-auto">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
@@ -76,7 +78,7 @@ const SingleImage = ({
         alt={altText}
         width={150} // Set appropriate width
         height={40} // Set appropriate height
-        className="h-10 w-full dark:hidden"
+        className="h-10 w-full "
       />
       <Image
         src={lightImageSrc}

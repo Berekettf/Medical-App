@@ -1,4 +1,3 @@
-import { Button } from "flowbite-react";
 import { Stethoscope, Video } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,7 +39,7 @@ export default function DoctorCard({
     },
   ];
   return (
-    <div className="border border-gray-200 bg-white inline-flex flex-col py-6 px-4 rounded-md hover:border-gray-400 duration-300 transition-all">
+    <div className="border border-gray-200 dark:bg-slate-800 dark:border-slate-600 bg-white inline-flex flex-col py-6 px-4 rounded-md hover:border-gray-400 duration-300 transition-all">
       <Link href="/doctors/slug">
         <h2 className="font-bold uppercase text-2xl tracking-widest">
           Dr. Agegnehu Belay, PA-C
@@ -68,13 +67,15 @@ export default function DoctorCard({
               <Stethoscope className="w-4 h-4 mr-2 flex-shrink-0" />
               <span>Family Medicine</span>
             </p>
-            <p className="bg-green-200 py-3 px-6 uppercase">Available Today</p>
+            <p className="bg-green-200 py-3 px-6 uppercase dark:text-slate-900">
+              Available Today
+            </p>
           </div>
         </div>
       </Link>
-      <div className="pt-6 border-t border-gray-200">
+      <div className="pt-6 border-t border-gray-200 dark:border-gray-600">
         <h3 className="flex items-center justify-between">
-          <span className="text-gray-600">Sun, Aug 18</span>{" "}
+          <span className="text-gray-600 dark:text-gray-400">Sun, Aug 18</span>{" "}
           <span className="font-bold">$120</span>
         </h3>
         <div className="py-3 grid grid-cols-3 gap-2">

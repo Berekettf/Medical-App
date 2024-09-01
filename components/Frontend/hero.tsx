@@ -15,16 +15,16 @@ const Hero = () => {
     "Acupuncturist",
   ];
   return (
-    <div className="bg-blue-950 dark:bg-slate-900 ">
-      <div className="relative pb-[110px] pt-[50px] dark:bg-dark lg:pt-[50px] max-w-6xl mx-auto">
+    <div className="bg-blue-950 dark:bg-slate-950  ">
+      <div className="relative pb-[110px] pt-[50px]  lg:pt-[50px] max-w-6xl mx-auto">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 lg:w-6/12">
               <div className="hero-content">
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-                  <span>Book Your </span>
+                  <span className="text-gray-50">Book Your </span>
                   <Transitiontext className="text-blue-500" TEXTS={TEXTS} />
-                  <span>Session Now</span>
+                  <span className="text-white">Session Now</span>
                 </h1>
                 <p className="mb-8 max-w-[480px] text-base text-gray-100 dark:-6">
                   Health shouldn&apos;t be a puzzle, we are cutting through the

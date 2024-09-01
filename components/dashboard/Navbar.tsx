@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Avatar, Dropdown } from "flowbite-react";
+import { Dropdown } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -36,13 +36,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { AlignJustify, Bell, Mail, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import ModeToggle from "../ModeToggle";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Session } from "next-auth";
+import { signOut } from "next-auth/react";
 
-export default function Navbar() {
+export default function Navbar({ session }: { session: Session }) {
+  const user = session.user;
   const router = useRouter();
   async function handleLogout() {
-    router.push("/");
+    await signOut();
+    router.push("/login");
   }
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
@@ -60,7 +65,7 @@ export default function Navbar() {
               className="flex items-center gap-2 text-lg font-semibold"
             >
               <Package2 className="h-6 w-6" />
-              <span className="sr-only">Acme Inc</span>
+              <span className="sr-only">Mdcl app</span>
             </Link>
             <Link
               href="#"
@@ -134,18 +139,28 @@ export default function Navbar() {
       <ModeToggle />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="secondary" size="icon" className="rounded-full">
-            <CircleUser className="h-5 w-5" />
-            <span className="sr-only">Toggle user menu</span>
-          </Button>
+          <Avatar>
+            {user.image ? (
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            ) : (
+              <AvatarFallback>CN</AvatarFallback>
+            )}
+          </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuLabel className="text-center">
+            {user.name}
+          </DropdownMenuLabel>
+          <DropdownMenuLabel className="text center text-sm font-light text-slate-500">
+            {user.email}
+          </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => handleLogout()}>
+            Logout
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>
