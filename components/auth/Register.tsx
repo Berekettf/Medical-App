@@ -12,7 +12,11 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function RegisterWithBg({ role = "USER" }: { role?: UserRole }) {
+export default function RegisterWithBg({
+  role = "USER",
+}: {
+  role?: string | string[] | undefined;
+}) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const {
@@ -33,8 +37,12 @@ export default function RegisterWithBg({ role = "USER" }: { role?: UserRole }) {
         reset();
         setIsLoading(false);
         toast.success("user created succesfully");
-        router.push(`/verify-account/${user.data?.id}`);
-        console.log(user.data);
+        if (role === "DOCTOR") {
+          router.push(`/onboarding/${user.data?.id}`);
+        } else {
+          router.push(`/verify-account/${user.data?.id}`);
+          console.log(user.data);
+        }
       } else {
         console.log(user.error);
       }

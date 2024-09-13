@@ -13,5 +13,6 @@ Shaden ui is very important
 https://desishub-docs.vercel.app/programming-tutorials/nextjs/next-projects (react-multi-carousel, in react authentication and authorization)
 
 Lecture 10 135min after registering use 'useRouter()' to verify acount router.push('/verify-account')
+lecture 12 token verfication
 
 React hooks form

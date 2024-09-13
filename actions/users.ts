@@ -4,6 +4,7 @@ import { prismaClient } from "@/lib/db";
 import { RegisterInputProps } from "@/types/types";
 import bcrypt from "bcrypt";
 import { Resend } from "resend";
+const cors = require('cors');
 import EmailTemplate from "@/components/emails/EmailTemplate";
 
 // Function to get a user by their ID
@@ -24,6 +25,7 @@ export async function getUserById(id: string) {
     return "User not found";
   }
 }
+
 
 // Function to create a new user
 export async function createUser(formData: RegisterInputProps) {

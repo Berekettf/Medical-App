@@ -3,6 +3,7 @@
 import {
   Bell,
   Folder,
+  Globe,
   Home,
   LineChart,
   Package,
@@ -30,7 +31,6 @@ export default function Sidebar() {
   const pathname = usePathname();
   const sideBarLinks = [
     { name: "Dashboard", path: "/dashboard", icon: Home },
-    { name: "Patient", path: "/patient", icon: Folder },
     { name: "products", path: "/dashboard/products", icon: Package },
     {
       name: "Orders",
@@ -41,7 +41,7 @@ export default function Sidebar() {
     { name: " Customers", path: "/dashboard/customers", icon: Users },
     { name: "Analytices", path: "/dashboard/analytices", icon: LineChart },
     { name: "Settings", path: "/dashboard/settings", icon: Settings },
-    { name: "Logout", path: "/logout", icon: Bell },
+    { name: "Online", path: "/", icon: Globe },
   ];
   return (
     <div className="hidden border-r bg-muted/40 md:block">

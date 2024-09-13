@@ -82,11 +82,11 @@ export default function page() {
       <section className="py-16 px-4">
         <div className="max-w-6xl gap-4 mx-auto grid grid-cols-1 md:grid-cols-2">
           <div className="">
-            <h2 className="sm:text-[3rem] text-[1.5rem] leading-[3.5rem]">
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
               Build a thriving{" "}
               <span className="text-blue-600 font-semibold">direct-pay</span>{" "}
               practice with Medical App.
-            </h2>
+            </h1>
             <p className="py-4">
               Welcome to Medical App, where connecting with patient is made
               easier than ever before. our platform streamlines the process of

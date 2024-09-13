@@ -103,7 +103,7 @@ export default function Footer() {
         <div className="flex-1">
           <div className="max-w-xs">
             <h2 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl my-4 dark:text-gray-50">
-              Medical App
+              Online-Med
             </h2>
             <p className="leading-relaxed mt-2 text-[15px] dark:text-gray-400">
               Bridging the healthcare gap, one appointment at a time.
