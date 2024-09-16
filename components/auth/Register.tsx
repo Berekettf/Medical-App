@@ -40,7 +40,8 @@ export default function RegisterWithBg({
         if (role === "DOCTOR") {
           router.push(`/onboarding/${user.data?.id}`);
         } else {
-          router.push(`/verify-account/${user.data?.id}`);
+          router.push('/login');
+          {/**`/verify-account/${user.data?.id}` when verify account works*/} 
           console.log(user.data);
         }
       } else {
