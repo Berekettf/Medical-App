@@ -1,48 +1,57 @@
 "use client";
 
 import {
+  AlarmClock,
   Bell,
-  Folder,
-  Globe,
   Home,
-  LineChart,
-  Package,
+  Mail,
   Package2,
   Settings,
-  ShoppingCart,
   Users,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import LogoutButton from "./LogoutButton";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { Session } from "next-auth";
 
-export default function Sidebar() {
+export default function Sidebar({ session }: { session: Session }) {
+  const { user } = session;
+  const role = user?.role;
   const pathname = usePathname();
-  const sideBarLinks = [
-    { name: "Dashboard", path: "/dashboard", icon: Home },
-    { name: "products", path: "/dashboard/products", icon: Package },
-    {
-      name: "Orders",
-      path: "/dashboard/orders",
-      icon: ShoppingCart,
-      bageCount: 5,
-    },
-    { name: " Customers", path: "/dashboard/customers", icon: Users },
-    { name: "Analytices", path: "/dashboard/analytices", icon: LineChart },
-    { name: "Settings", path: "/dashboard/settings", icon: Settings },
-    { name: "Online", path: "/", icon: Globe },
-  ];
+  const roles = {
+    USER: [
+      { name: "Dashboard", path: "/dashboard", icon: Home },
+      {
+        name: "my appointments",
+        path: "/dashboard/user/appointment",
+        icon: AlarmClock,
+      },
+      { name: "Settings", path: "/dashboard/user/settings", icon: Settings },
+    ],
+    ADMIN: [
+      { name: "Dashboard", path: "/dashboard", icon: Home },
+      { name: "Doctors", path: "/dashboard/doctors", icon: Users },
+      { name: "Patients", path: "/dashboard/patients", icon: Users },
+      { name: "Appointments", path: "/dashboard/appointments", icon: Users },
+      { name: "Settings", path: "/dashboard/settings", icon: Settings },
+    ],
+    DOCTOR: [
+      { name: "Dashboard", path: "/dashboard", icon: Home },
+      {
+        name: "Appointments",
+        path: "/dashboard/doctor/appointments",
+        icon: AlarmClock,
+      },
+      { name: "Patients", path: "/dashboard/doctor/patients", icon: Users },
+      { name: "Tasks", path: "/dashboard/doctor/tasks", icon: Users },
+      { name: "Inbox", path: "/dashboard/doctor/inbox", icon: Mail },
+      { name: "Settings", path: "/dashboard/doctor/settings", icon: Settings },
+    ],
+  };
+  console.log(role);
+  const sideBarLinks = roles[role] || [];
   return (
     <div className="hidden border-r bg-muted/40 md:block">
       <div className="flex h-full max-h-screen flex-col gap-2">
@@ -71,31 +80,10 @@ export default function Sidebar() {
                 >
                   <Icon className="h-4 w-4" />
                   {link.name}
-                  {link.bageCount && (
-                    <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                      {link.bageCount}
-                    </Badge>
-                  )}
                 </Link>
               );
             })}
           </nav>
-        </div>
-        <div className="mt-auto p-4">
-          <Card x-chunk="dashboard-02-chunk-0">
-            <CardHeader className="p-2 pt-0 md:p-4">
-              <CardTitle>Upgrade to Pro</CardTitle>
-              <CardDescription>
-                Unlock all features and get unlimited access to our support
-                team.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-              <Button size="sm" className="w-full">
-                Upgrade
-              </Button>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </div>

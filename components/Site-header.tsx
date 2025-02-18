@@ -1,16 +1,12 @@
 "use client";
 
-import Link from "next/link";
 
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
 import { CommandMenu } from "@/components/command-menu";
-import { Icons } from "@/components/icons";
 import { MainNav } from "@/components/main-nav";
 import { MobileNav } from "@/components/mobile-nav";
 import ModeToggle from "@/components/ModeToggle";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { LogIn, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { LogIn } from "lucide-react";
 import { Session } from "next-auth";
 import {
   DropdownMenu,
@@ -23,6 +19,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 export function SiteHeader({ session }: { session: Session | null }) {
   const user = session?.user;
@@ -40,6 +37,11 @@ export function SiteHeader({ session }: { session: Session | null }) {
           <div className="w-full flex-1 md:w-auto md:flex-none">
             <CommandMenu />
           </div>
+          <Button asChild>
+            <Link href="/login">
+              <LogIn className="mr-2 h-4 w-4" /> Login
+            </Link>
+          </Button>
           <nav className="flex items-center gap-4">
             {session && session.user && user?.email ? (
               <DropdownMenu>
@@ -74,11 +76,7 @@ export function SiteHeader({ session }: { session: Session | null }) {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button asChild>
-                <Link href="/login">
-                  <LogIn className="mr-2 h-4 w-4" /> Login
-                </Link>
-              </Button>
+              ""
             )}
             <ModeToggle />
           </nav>

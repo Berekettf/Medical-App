@@ -24,14 +24,14 @@ export default function page() {
       title: "Begin your Journy",
       description:
         " Start a new application to join our network healthcary provider.",
-      link: "/",
+      link: "/register?role=DOCTOR&plan=free",
       linkTitle: "Start a new Application",
     },
     {
       title: "Resume Application",
       description:
         " Pick up where you left off and complete your onboarding process schedule for physical approval",
-      link: "/",
+      link: "/onboarding/resume",
       linkTitle: "Continue your Application",
     },
     {
@@ -111,7 +111,7 @@ export default function page() {
           </div>
           <Image
             className="w-full"
-            src="/5.png"
+            src="/4.png"
             alt=""
             width={1170}
             height={848}
@@ -121,7 +121,7 @@ export default function page() {
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto gap-8 grid grid-cols-1 md:grid-cols-2">
           <Image
-            src="/5.png"
+            src="/4.png"
             alt="Doctor"
             width={1170}
             height={848}

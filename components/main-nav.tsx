@@ -6,8 +6,7 @@ import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/icons";
-import { Microscope } from "lucide-react";
-import path from "node:path/posix";
+import { Microscope } from "lucide-react"
 import { docsConfig } from "@/config/docs";
 
 export function MainNav() {

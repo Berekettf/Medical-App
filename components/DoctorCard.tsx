@@ -76,7 +76,7 @@ export default function DoctorCard({
       <div className="pt-6 border-t border-gray-200 dark:border-gray-600">
         <h3 className="flex items-center justify-between">
           <span className="text-gray-600 dark:text-gray-400">Sun, Aug 18</span>{" "}
-          <span className="font-bold">$120</span>
+          <span className="font-bold">120birr</span>
         </h3>
         <div className="py-3 grid grid-cols-3 gap-2">
           {timeStamps.splice(0, 5).map((item, i) => {

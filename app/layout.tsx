@@ -4,6 +4,10 @@ import "./globals.css";
 import Providers from "@/components/Providers";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/config/site";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from "@/app/api/uploadthing/core";
+import { OnBoardingContextProvider } from "@/context/context";
 
 // Setup the font
 const outfit = Outfit({ subsets: ["latin"] });
@@ -69,14 +73,21 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${outfit.className}`}>
+      <NextSSRPlugin
+          routerConfig={extractRouterConfig(ourFileRouter)}
+        />
+        <Providers>
+        <OnBoardingContextProvider>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Providers>{children}</Providers>
+          {children}
         </ThemeProvider>
+        </OnBoardingContextProvider>
+        </Providers>
       </body>
     </html>
   );

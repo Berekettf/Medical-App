@@ -1,32 +1,52 @@
 "use client";
-import { type RegisterInputProps } from "@/types/types";
-import Link from "next/link";
+import { type BiodataFormProps } from "@/types/types";
 import { useForm } from "react-hook-form";
 import TextInput from "../formInput/TextInput";
 import SubmitButton from "../formInput/SubmitButton";
 import { useState } from "react";
-import { createUser } from "@/actions/users";
-import { UserRole } from "@prisma/client";
 import toast from "react-hot-toast";
-import { Button } from "../ui/button";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { DatePickerInput } from "../formInput/DatePickerInput";
-import { TextAreaInput } from "../formInput/TextAreaInput";
 import RadioInput from "../formInput/RadioInput";
+import NumberTrackingGenereter from "@/lib/NumberTracking";
+import { createDoctorProfile } from "@/actions/onboarding";
+import { useOnBoardingContext } from "@/context/context";
 
-export default function BiodataForm() {
+export type StepInputProps = {
+  page: string;
+  userId?: string;
+  title: string;
+  description: string;
+  nextPage?: string;
+  formId?: string;
+};
+
+export default function BiodataForm({
+  nextPage,
+  userId,
+  page,
+  title,
+  description,
+  formId=""
+}: StepInputProps) {
   const [dob, setDob] = useState<Date>();
-  const [expiry, setExpiry] = useState<Date>();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  console.log(dob);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<RegisterInputProps>();
+  } = useForm<BiodataFormProps>();
+
+  const {
+    truckingNumber,
+    setTruckingNumber,
+    doctorProfileId,
+    setDoctorProfileId,
+  } = useOnBoardingContext();
+
+  console.log(truckingNumber, setTruckingNumber,doctorProfileId, setDoctorProfileId);
   const genderOptions = [
     {
       label: "Male",
@@ -38,20 +58,43 @@ export default function BiodataForm() {
     },
   ];
 
-  async function onSubmit(data: RegisterInputProps) {
+  async function onSubmit(data: BiodataFormProps) {
+    setIsLoading(true);
+    if (!dob) {
+      toast.error("please select your DOB");
+      return;
+    }
+    data.trackingNumber = NumberTrackingGenereter();
+    data.userId = userId;
+    data.dob = dob;
+    data.page = page;
     console.log(data);
     //setIsLoading(true);
-  }
 
+    try {
+      const res = await createDoctorProfile(data);
+  
+      if (res.status==201){
+      setIsLoading(false);
+      setTruckingNumber(res.data?.trackingNumber??"");
+      setDoctorProfileId(res.data?.id??"");
+      router.push(`/onboarding/${userId}?page=${nextPage}`);
+      setIsLoading(false);
+      }else{
+           setIsLoading(false)
+      }
+      
+    } catch (error) {
+      console.log("An unexpected error occurred:", error);
+    }
+  }
   return (
     <div className="w-full">
       <div className="grid gap-2 text-center border-b border-gray-200 pb-4">
         <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-2">
-          Bio Data
+          {title}
         </h1>
-        <p className="text-balance text-muted-foreground">
-          Enter your credentials to create an account
-        </p>
+        <p className="text-balance text-muted-foreground">{description}</p>
       </div>
       <form className="py-4 px-4 mx-auto " onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-4 grid-cols-2">
@@ -71,21 +114,12 @@ export default function BiodataForm() {
             placeholder="eg. Wube"
             className="col-span-full sm:col-span-1"
           />
-
-          <TextInput
-            label="Email address"
-            register={register}
-            name="email"
-            errors={errors}
-            type="email"
-            placeholder="ex beka@gmail.com"
-            className="col-span-full sm:col-span-1"
-          />
           <TextInput
             label="Middle Name(Optional)"
             register={register}
             name="middleName"
             errors={errors}
+            isRequired={false}
             placeholder="ex Mekicha"
             className="col-span-full sm:col-span-1"
           />
@@ -95,34 +129,13 @@ export default function BiodataForm() {
             setDate={setDob}
             className="col-span-full sm:col-span-1"
           />
-          <TextInput
-            label="Medical License"
-            register={register}
-            name="medicalLicense"
-            errors={errors}
-            placeholder="enter medical license"
-            className="col-span-full sm:col-span-1"
-          />
-          <DatePickerInput
-            title="Medical License Expiry"
-            date={expiry}
-            setDate={setExpiry}
-            className="col-span-full sm:col-span-1"
-          />
+
           <RadioInput
             radioOptions={genderOptions}
             errors={errors}
             title="Gender"
             name="gender"
             register={register}
-            className="col-span-full sm:col-span-1"
-          />
-          <TextAreaInput
-            label="Enter Your Biography"
-            register={register}
-            name="medicalLicense"
-            errors={errors}
-            placeholder="enter medical license"
             className="col-span-full sm:col-span-1"
           />
         </div>

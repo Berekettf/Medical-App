@@ -1,5 +1,4 @@
 import React from "react";
-import Search from "./Search";
 import Transitiontext from "./Transitiontext";
 import { Pill } from "lucide-react";
 import Image from "next/image";
@@ -79,11 +78,11 @@ const Hero = () => {
               <div className="lg:ml-auto lg:text-right">
                 <div className="relative z-10 inline-block pt-11 lg:pt-0">
                   <Image
-                    src="https://cdn.tailgrids.com/1.0/assets/images/hero/hero-image-01.png"
+                    src="/medical doctor.png"
                     alt="hero"
                     width={800}
                     height={600}
-                    className="max-w-full lg:ml-auto"
+                    className="max-w-full lg:ml-auto rounded-lg"
                   />
                   <span className="absolute -bottom-8 -left-8 z-[-1]">
                     <svg

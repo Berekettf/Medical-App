@@ -2,7 +2,8 @@
 
 import { prismaClient } from "@/lib/db";
 import { RegisterInputProps } from "@/types/types";
-import bcrypt from "bcrypt";
+//import bcrypt from "bcryptjs";
+import bcryptjs from 'bcryptjs';
 import { Resend } from "resend";
 const cors = require('cors');
 import EmailTemplate from "@/components/emails/EmailTemplate";
@@ -33,7 +34,7 @@ export async function createUser(formData: RegisterInputProps) {
   const resend = new Resend("re_VYkNVb9Y_LK4ZWk9KcfZ9WAnbb19B7xqp");
 
   // Hash the password
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await bcryptjs.hash(password, 10);
 
   // Generate Token
   const generateToken = () => {
@@ -89,3 +90,20 @@ export async function createUser(formData: RegisterInputProps) {
     };
   }
 }
+
+{/*export async function updateUser(id: string){
+  if(id)
+   
+  try {
+    const userUpdate = await prismaClient.user.update({
+      where: { id },
+      data: {
+        isVerified: true,
+      },
+    });
+    
+    return userUpdate
+  } catch (error) {
+    console.log(error)
+  }
+}*/}

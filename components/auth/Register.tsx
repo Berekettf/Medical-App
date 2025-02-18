@@ -6,7 +6,6 @@ import TextInput from "../formInput/TextInput";
 import SubmitButton from "../formInput/SubmitButton";
 import { useState } from "react";
 import { createUser } from "@/actions/users";
-import { UserRole } from "@prisma/client";
 import toast from "react-hot-toast";
 import { Button } from "../ui/button";
 import Image from "next/image";
