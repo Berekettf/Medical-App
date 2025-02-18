@@ -1,13 +1,13 @@
 'use client'
 import React from "react";
 import { Tabs } from "flowbite-react";
-import { HiAdjustments, HiClipboardList, HiUserCircle } from "react-icons/hi";
-import { MdDashboard } from "react-icons/md";
 import Monday from "./availabilityDays/Monday";
 import { DoctorProfile } from "@prisma/client";
 import Tuesday from "./availabilityDays/Tuesday";
 import Wensday from "./availabilityDays/Wensday";
 import Thersday from "./availabilityDays/Thersday";
+import Friday from "./availabilityDays/Friday";
+import Saterday from "./availabilityDays/Saterday";
 
 export default function Availability({profile}: {profile: DoctorProfile| undefined | null}) {
 
@@ -30,11 +30,11 @@ export default function Availability({profile}: {profile: DoctorProfile| undefin
     },
     {
         title: "Friday",
-        component: <></>
+        component: (<Friday/>)
     },
     {
         title: "Saterday",
-        component: <></>
+        component: (<Saterday/>)
     },
     {
         title: "Monday(If Uregent)",

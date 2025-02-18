@@ -14,16 +14,13 @@ export default function AdditionalForm({
   page,
   title,
   description,
-  nextPage,
   formId,
-  userId
 }: StepInputProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<AdditionalFormProps>();
 
