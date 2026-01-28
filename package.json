@@ -49,7 +49,7 @@
     "formidable": "^3.5.1",
     "lucide-react": "^0.427.0",
     "mongodb": "^6.9.0",
-    "next": "^15.0.3",
+    "next": "^16.1.5",
     "next-auth": "^4.24.7",
     "next-themes": "^0.3.0",
     "react": "^18.2.0",
